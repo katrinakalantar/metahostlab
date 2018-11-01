@@ -12,6 +12,10 @@ subset_geo_cv(geo_dataset_name, geo_dataset_list, pos_regex, neg_regex,
 
 \item{geo_dataset_list}{The pre-loaded list of GEO datasets.}
 
+\item{pos_regex}{A regular expression (string) that selects for the positive class in the GEO dataset metadta field specified by source_variable arg}
+
+\item{neg_regex}{A regular expression (string) that selects for the negative class in the GEO dataset metadta field specified by source_variable arg}
+
 \item{source_variable}{The GEO dataset variable that will be used to split the dataset.}
 
 \item{flip_i}{Decimal value indicating the proportion of samples of class B to flip to class A.}

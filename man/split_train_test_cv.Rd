@@ -18,7 +18,7 @@ split_train_test_cv(input, regex, source_variable, flip_i, flip_j,
 
 \item{flip_j}{Decimal value indicating the proportion of samples of class B to flip to class A.}
 
-\item{cv=10}{The number of cross-validation splits to return.}
+\item{cv}{The number of cross-validation splits to return; default = 10.}
 }
 \value{
 List of datasets split for cross-validation with training and test sets, including flipped labels at specified percentage.

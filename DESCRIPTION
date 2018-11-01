@@ -9,4 +9,9 @@ Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.1.0
 Suggests: testthat
-Imports: PopED
+Imports: 
+	PopED (>= 0.4.0),
+	caret (>= 6.0),
+	parallel,
+	Biobase (>= 2.40.0),
+	permute (>= 0.9)

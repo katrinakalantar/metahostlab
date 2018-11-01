@@ -1,34 +1,4 @@
-#' Apply one of the Multiple Filter ensemble algorithms - enabling parallel computation in make_ensemble_parallle() function
-#' 
-#' @param algorithmL The string corresponding to available caret package algorithm names for caret trainControl function.
-#' @param x The dataset to train the algorithm.
-#' @param y The binary variable output.
-#' @return Vector indicating whether a sample was predicted discordant by this algorithm.
-#' @examples
-#' algApplyFn(algorithmL, x, y)
-algApplyFn <- function(algorithmL, x, y){
-  ctrl <- trainControl(method = "cv", savePred=T) #, classProb=T
-  
-  mod <- NULL
-  if(algorithmL == "nnet"){
-    mod <- train(x, y, method = algorithmL, trControl = ctrl, maxit = 500)
-  }else{
-    mod <- train(x, y, method = algorithmL, trControl = ctrl)
-  }
-  
-  all_predictions <- mod$pred
-  predictions_to_use <- all_predictions[rowSums(do.call(cbind, lapply(names(mod$bestTune), function(x){print(x); return(all_predictions[,x] == mod$bestTune[[x]])}))) == length(mod$bestTune),]
-  predictions_to_use <- predictions_to_use[order(predictions_to_use$rowIndex),]   # MAJOR FIX 10/15
-  sum(predictions_to_use$pred == predictions_to_use$obs) / length(predictions_to_use$pred)
-  
-  concordant <- predictions_to_use$pred == predictions_to_use$obs
-  accuracy <- sum(predictions_to_use$pred == predictions_to_use$obs)/length(predictions_to_use$obs)
-  logger.info(msg = sprintf("MAIN - ALGO - ENSEMBLE - %s, accuracy = %f", algorithmL, accuracy))
-  
-  discordant <- predictions_to_use$pred != predictions_to_use$obs
-  
-  return(discordant)
-}
+
 
 
 #' Multiple Filter ensemble algorithm, parallel version
@@ -40,6 +10,32 @@ algApplyFn <- function(algorithmL, x, y){
 #' @examples
 #' make_ensemble_parallel(x, y, c("rf","regLogistic","nnet"))
 make_ensemble_parallel <- function(x, y, library){
+  
+  algApplyFn <- function(algorithmL, x, y){
+    ctrl <- trainControl(method = "cv", savePred=T) #, classProb=T
+    
+    mod <- NULL
+    if(algorithmL == "nnet"){
+      mod <- train(x, y, method = algorithmL, trControl = ctrl, maxit = 500)
+    }else{
+      mod <- train(x, y, method = algorithmL, trControl = ctrl)
+    }
+    
+    all_predictions <- mod$pred
+    predictions_to_use <- all_predictions[rowSums(do.call(cbind, lapply(names(mod$bestTune), function(x){print(x); return(all_predictions[,x] == mod$bestTune[[x]])}))) == length(mod$bestTune),]
+    predictions_to_use <- predictions_to_use[order(predictions_to_use$rowIndex),]   # MAJOR FIX 10/15
+    sum(predictions_to_use$pred == predictions_to_use$obs) / length(predictions_to_use$pred)
+    
+    concordant <- predictions_to_use$pred == predictions_to_use$obs
+    accuracy <- sum(predictions_to_use$pred == predictions_to_use$obs)/length(predictions_to_use$obs)
+    logger.info(msg = sprintf("MAIN - ALGO - ENSEMBLE - %s, accuracy = %f", algorithmL, accuracy))
+    
+    discordant <- predictions_to_use$pred != predictions_to_use$obs
+    
+    return(discordant)
+  }
+  
+  
   count = 0
   list_of_results <- list()
   
