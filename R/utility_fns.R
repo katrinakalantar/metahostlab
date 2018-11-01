@@ -40,7 +40,7 @@ inject_label_noiseR <- function(y, flip_i, flip_j){
 #' Cast the labels to the appropriate notation for processing 
 #'
 #' @param y The binary variable output.
-#' @param t 
+#' @param t integer value indicating how to cast label values
 #' @return y, a list of labels cast to the appropriate notation 
 #' @examples
 #' castLabel(c(1,1,2,2), 2)

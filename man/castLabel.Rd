@@ -9,7 +9,7 @@ castLabel(y, t)
 \arguments{
 \item{y}{The binary variable output.}
 
-\item{t}{}
+\item{t}{integer value indicating how to cast label values}
 }
 \value{
 y, a list of labels cast to the appropriate notation
