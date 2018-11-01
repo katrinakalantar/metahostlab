@@ -1,4 +1,5 @@
 context("inject label noise")
+library(PopED)
 
 initial_classes <- c(rep(1,100), rep(2,100))
 initial_fd <- rep(-1, length(initial_classes))
