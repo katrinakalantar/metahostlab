@@ -109,7 +109,12 @@ In order to get the travis build badge on the repo, you need to add the followin
 [![Build Status](your travis url for the repo here.png)](your travis url for the repo here)
 ```
 
+Adding the test coverage badge:
 
+```
+[![Coverage Status](https://img.shields.io/codecov/c/github/katrinakalantar/metahostlab.svg)](https://codecov.io/gh/katrinakalantar/metahostlab?branch=master)
+
+```
 
 
 
