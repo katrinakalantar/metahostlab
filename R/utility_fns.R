@@ -3,8 +3,6 @@
 #'
 #' @param x integer value
 #' @return Text indicating whether the input was a "1"
-#' @examples
-#' intro_to_unittest(x)
 intro_to_unittest <- function(x){
   if(x == 1){
     return("one")
@@ -19,8 +17,6 @@ intro_to_unittest <- function(x){
 #' @param flip_i The proportion of samples of class A to flip to class B - will probabilistically flip ~this proportion of samples, but may not be exact.
 #' @param flip_j The proportion of samples of class B to flip to class A - will probabilistically flip ~this proportion of samples, but may not be exact.
 #' @return A list containing: "yz", the flipped sample labels; "fd", an indicator variable with +1 if the sample was flipped and -1 if the sample label is unflipped.
-#' @examples
-#' inject_label_noiseR(y, flip_i, flip_j)
 inject_label_noiseR <- function(y, flip_i, flip_j){
   fd <- rep(1, length(y)) * -1
   yz <- castLabel(y, -1)
@@ -42,8 +38,6 @@ inject_label_noiseR <- function(y, flip_i, flip_j){
 #' @param y The binary variable output.
 #' @param t integer value indicating how to cast label values
 #' @return y, a list of labels cast to the appropriate notation 
-#' @examples
-#' castLabel(c(1,1,2,2), 2)
 castLabel <- function(y, t){
   if (length(y) == 1){
     print('All value of y required to recognise current format')
@@ -72,7 +66,7 @@ castLabel <- function(y, t){
     if (t == -1){
       y = y * 2 - 3
     }else if(t == 0){
-      y = y -1
+      y = y - 1
     }else if(t == 2){
       y = y # do nothing, included for clarity
     }

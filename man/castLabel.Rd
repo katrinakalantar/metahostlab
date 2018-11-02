@@ -17,6 +17,3 @@ y, a list of labels cast to the appropriate notation
 \description{
 Cast the labels to the appropriate notation for processing
 }
-\examples{
-castLabel(c(1,1,2,2), 2)
-}

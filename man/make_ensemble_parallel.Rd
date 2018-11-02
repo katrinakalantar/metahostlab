@@ -19,6 +19,3 @@ A list containing: "MF", samples to be kept by majority filter; "CF", samples to
 \description{
 Multiple Filter ensemble algorithm, parallel version
 }
-\examples{
-make_ensemble_parallel(x, y, c("rf","regLogistic","nnet"))
-}

@@ -15,6 +15,3 @@ Text indicating whether the input was a "1"
 \description{
 Test out how to write appropriate unit tests
 }
-\examples{
-intro_to_unittest(x)
-}

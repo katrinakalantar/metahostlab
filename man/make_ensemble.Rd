@@ -21,6 +21,3 @@ A list containing: "MF", samples to be kept by majority filter; "CF", samples to
 \description{
 Generate predictions based on an ensemble of classification algorithms;
 }
-\examples{
-make_ensemble(x, y, c("regLogistic", "rf", "knn", "svmLinear3", "nnet"), multiple = TRUE)
-}

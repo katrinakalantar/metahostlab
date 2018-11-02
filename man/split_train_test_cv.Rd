@@ -26,6 +26,3 @@ List of datasets split for cross-validation with training and test sets, includi
 \description{
 Given a dataset, split it into training and test sets randomly.
 }
-\examples{
-subset_geo_cv(geo_dataset_name, geo_dataset_list, source_variable, flip_i, flip_j)
-}

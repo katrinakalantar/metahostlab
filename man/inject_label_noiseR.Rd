@@ -19,6 +19,3 @@ A list containing: "yz", the flipped sample labels; "fd", an indicator variable 
 \description{
 Probabilistically inject label noise according to proportions
 }
-\examples{
-inject_label_noiseR(y, flip_i, flip_j)
-}

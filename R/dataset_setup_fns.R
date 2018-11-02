@@ -9,8 +9,6 @@
 #' @param flip_i Decimal value indicating the proportion of samples of class B to flip to class A.
 #' @param flip_j Decimal value indicating the proportion of samples of class B to flip to class A.
 #' @return List of datasets split for cross-validation with training and test sets, including flipped labels at specified percentage.
-#' @examples
-#' subset_geo_cv(geo_dataset_name, geo_dataset_list, source_variable, flip_i, flip_j)
 subset_geo_cv <- function(geo_dataset_name, geo_dataset_list, pos_regex, neg_regex, source_variable, flip_i, flip_j){
   
   geo_data <- geo_dataset_list[[geo_dataset_name]]
@@ -60,8 +58,6 @@ subset_geo_cv <- function(geo_dataset_name, geo_dataset_list, pos_regex, neg_reg
 #' @param flip_j Decimal value indicating the proportion of samples of class B to flip to class A.
 #' @param cv The number of cross-validation splits to return; default = 10.
 #' @return List of datasets split for cross-validation with training and test sets, including flipped labels at specified percentage.
-#' @examples
-#' subset_geo_cv(geo_dataset_name, geo_dataset_list, source_variable, flip_i, flip_j)
 split_train_test_cv <- function(input, regex, source_variable, flip_i, flip_j, cv=10){
   s <- shuffle(seq(1:dim(input)[2]))
   cv_datasets <- list()

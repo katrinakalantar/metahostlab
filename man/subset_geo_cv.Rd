@@ -28,6 +28,3 @@ List of datasets split for cross-validation with training and test sets, includi
 \description{
 Create a cross-validation dataset from a known GEO dataset with a covariate of interest.
 }
-\examples{
-subset_geo_cv(geo_dataset_name, geo_dataset_list, source_variable, flip_i, flip_j)
-}

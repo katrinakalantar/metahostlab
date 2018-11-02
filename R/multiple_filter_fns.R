@@ -7,8 +7,6 @@
 #' @param y The binary variable output.
 #' @param library List of algorithm ID strings(corresponding to available caret package algorithm names for caret trainControl function) to use in the multiple filter ensemble.
 #' @return A list containing: "MF", samples to be kept by majority filter; "CF", samples to be kept by consensus filter, "full_res", the full list of discordant predictions
-#' @examples
-#' make_ensemble_parallel(x, y, c("rf","regLogistic","nnet"))
 make_ensemble_parallel <- function(x, y, library){
   
   algApplyFn <- function(algorithmL, x, y){
@@ -63,8 +61,6 @@ make_ensemble_parallel <- function(x, y, library){
 #' @param library A vector of strings indicating the algorithms to be included in the ensemble. Available algorithms can be queried here: https://topepo.github.io/caret/available-models.html
 #' @param multiple Boolean value indicating whether to run multiple iterations of cross-validation to generate ensemble predictions; default = FALSE; If TRUE, will perform 5 iterations 
 #' @return A list containing: "MF", samples to be kept by majority filter; "CF", samples to be kept by consensus filter, "full_res", the full list of discordant predictions
-#' @examples
-#' make_ensemble(x, y, c("regLogistic", "rf", "knn", "svmLinear3", "nnet"), multiple = TRUE)
 make_ensemble <- function(x, y, library, multiple = FALSE){
   count = 0
   list_of_results <- list()
