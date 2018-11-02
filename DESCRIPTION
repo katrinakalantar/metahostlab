@@ -15,4 +15,5 @@ Imports:
 	caret (>= 6.0),
 	parallel,
 	Biobase (>= 2.40.0),
-	permute (>= 0.9)
+	permute (>= 0.9),
+	futile.logger (>= 1.4.3)

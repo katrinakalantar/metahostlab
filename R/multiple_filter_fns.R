@@ -10,13 +10,13 @@
 make_ensemble_parallel <- function(x, y, library){
   
   algApplyFn <- function(algorithmL, x, y){
-    ctrl <- trainControl(method = "cv", savePred=T) #, classProb=T
+    ctrl <- caret::trainControl(method = "cv", savePred=T) #, classProb=T
     
     mod <- NULL
     if(algorithmL == "nnet"){
-      mod <- train(x, y, method = algorithmL, trControl = ctrl, maxit = 500)
+      mod <- caret::train(x, y, method = algorithmL, trControl = ctrl, maxit = 500)
     }else{
-      mod <- train(x, y, method = algorithmL, trControl = ctrl)
+      mod <- caret::train(x, y, method = algorithmL, trControl = ctrl)
     }
     
     all_predictions <- mod$pred
@@ -37,7 +37,7 @@ make_ensemble_parallel <- function(x, y, library){
   count = 0
   list_of_results <- list()
   
-  list_of_results = mclapply(library, function(alg){return(algApplyFn(alg, x, y))})
+  list_of_results = parallel::mclapply(library, function(alg){return(algApplyFn(alg, x, y))})
   names(list_of_results) <- make.unique(library)
   print(list_of_results)
   
@@ -65,18 +65,18 @@ make_ensemble <- function(x, y, library, multiple = FALSE){
   count = 0
   list_of_results <- list()
   for(algorithmL in library){
-    ctrl <- trainControl(method = "cv", savePred=T) 
+    ctrl <- caret::trainControl(method = "cv", savePred=T) 
     
     if(multiple){
       print("generating ensemble with repeats")
-      ctrl <- trainControl(method = "repeatedcv", savePred=T, number = 10, repeats = 5) #classProb=T,
+      ctrl <- caret::trainControl(method = "repeatedcv", savePred=T, number = 10, repeats = 5) #classProb=T,
     }
     
     mod <- NULL
     if(algorithmL == "nnet"){
-      mod <- train(x, y, method = algorithmL, trControl = ctrl, maxit = 500)
+      mod <- caret::train(x, y, method = algorithmL, trControl = ctrl, maxit = 500)
     }else{
-      mod <- train(x, y, method = algorithmL, trControl = ctrl)
+      mod <- caret::train(x, y, method = algorithmL, trControl = ctrl)
     }
     all_predictions <- mod$pred
     predictions_to_use <- all_predictions[rowSums(do.call(cbind, lapply(names(mod$bestTune), function(x){print(x); return(all_predictions[,x] == mod$bestTune[[x]])}))) == length(mod$bestTune),]

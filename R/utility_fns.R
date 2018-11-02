@@ -23,7 +23,7 @@ inject_label_noiseR <- function(y, flip_i, flip_j){
   y <- castLabel(y, 2)
   flip_rate <- c(flip_i, flip_j)
   for(i in c(1,2)){
-    prob = rand(length(yz),1)
+    prob = PopED::rand(length(yz),1)
     idx = intersect(which(y==i), which(prob <= flip_rate[i]))
     yz[idx] = yz[idx] * -1
     fd[idx] = fd[idx] * -1
